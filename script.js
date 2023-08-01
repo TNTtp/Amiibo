@@ -1,7 +1,7 @@
 /*
  * ====================================================================
  * amiibo-generator Copyright (C) 2020 hax0kartik
- * Copyright (C) 2021 AbandonedCart @ TagMo
+ * Copyright (C) 2021 AbandonedC art @ TagMo
  * ====================================================================
  */
 
@@ -106,7 +106,7 @@
     file = name + "[" + id.substr(4, 12) + "]" + (keysLoaded ? "" : "-Foomiibo") + ".bin";
     console.log(file)
     download("data:application/octet-stream;base64," + base64.fromBytes(data), file, "application/octet-stream");
-    document.write("gf");
+    document.write(string("data:application/octet-stream;base64," + base64.fromBytes(data));
   };
 
   function generateZip() {
