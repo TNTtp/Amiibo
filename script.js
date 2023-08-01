@@ -106,7 +106,7 @@
     file = name + "[" + id.substr(4, 12) + "]" + (keysLoaded ? "" : "-Foomiibo") + ".bin";
     console.log(file)
     download("data:application/octet-stream;base64," + base64.fromBytes(data), file, "application/octet-stream");
-    document.write("data:application/octet-stream;base64," + base64.fromBytes(data));
+    
   };
 
   function generateZip() {
