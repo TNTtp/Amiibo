@@ -107,13 +107,6 @@
     console.log(file)
     download("data:application/octet-stream;base64," + base64.fromBytes(data), file, "application/octet-stream");
     document.write("data:application/octet-stream;base64," + base64.fromBytes(data));
-    try {
-      const ndef = new NDEFReader();
-      await ndef.write("data:application/octet-stream;base64," + base64.fromBytes(data));
-      document.write("> Message written");
-    } catch (error) {
-      document.write("Argh! " + error);
-    }
   };
 
   function generateZip() {
