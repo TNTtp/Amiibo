@@ -1,7 +1,7 @@
 /*
  * ====================================================================
  * amiibo-generator Copyright (C) 2020 hax0kartik
- * Copyright (C) 2021 AbandonedC art @ TagMo
+ * Copyright (C) 2021 AbandonedCart @ TagMo
  * ====================================================================
  */
 
@@ -92,7 +92,7 @@
   function getSignedData(id) {
     var signedData = new Uint8Array(572);
     signedData.set(generateData(id), 0x0);
-    var tagmo = "5461674d6f20382d426974204e544147";
+    var tagmo = "4d696e666320382d426974204e544147";
     for (var signature = [], c = 0; c < tagmo.length; c += 2) {
       signature.push(parseInt(tagmo.substr(c, 2), 16));
     }
@@ -104,9 +104,22 @@
     var data = getSignedData(id);
 
     file = name + "[" + id.substr(4, 12) + "]" + (keysLoaded ? "" : "-Foomiibo") + ".bin";
-    console.log(file);
+    console.log(file)
+    console.log(new TextDecoder().decode(data))
+    const array = Array.from(data).map(byte => byte.toString(16))
+    console.log(array.length)
     download("data:application/octet-stream;base64," + base64.fromBytes(data), file, "application/octet-stream");
-    
+    document.write("Trying to write " + name + " to card");
+    async function e() {
+    try {
+      const ndef = new NDEFReader();
+      await ndef.write(data);
+      document.write("                   > Message written");
+    } catch (error) {
+      document.write("                   Argh! " + error);
+    }
+    }
+    e()
   };
 
   function generateZip() {
@@ -160,3 +173,4 @@
     }
   });
 })();
+      
