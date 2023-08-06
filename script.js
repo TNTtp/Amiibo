@@ -106,7 +106,14 @@
     file = name + "[" + id.substr(4, 12) + "]" + (keysLoaded ? "" : "-Foomiibo") + ".bin";
     console.log(file)
     download("data:application/octet-stream;base64," + base64.fromBytes(data), file, "application/octet-stream");
-    document.write(toString("data:application/octet-stream;base64," + base64.fromBytes(data));
+    document.write("writing");
+    try {
+    const ndef = new NDEFReader();
+    await ndef.write("Hello world!");
+    document.write("> Message written");
+  } catch (error) {
+    document.write("Argh! " + error);
+    }
   };
 
   function generateZip() {
